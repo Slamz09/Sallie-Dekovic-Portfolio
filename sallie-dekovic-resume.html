@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sallie Dekovic</title>
+<style>
+  :root {
+    --gw-body-max: 46em;
+    --gw-bg: #fffff8;
+    --gw-fg: #111111;
+    --gw-fg-dim: #555555;
+    --gw-link: #1a3e8c;
+    --gw-link-visited: #59389c;
+    --gw-rule: #d8d5c8;
+    --gw-margin-note: #6b6b5e;
+    --gw-serif: "Source Serif Pro", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --gw-mono: "Nimbus Mono L", "Courier New", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --gw-bg: #161613;
+      --gw-fg: #dcdccf;
+      --gw-fg-dim: #a3a396;
+      --gw-link: #8fb4ff;
+      --gw-link-visited: #c6a6f0;
+      --gw-rule: #3a382f;
+      --gw-margin-note: #9b9b87;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--gw-bg); }
+
+  body {
+    margin: 0;
+    padding: 3em 1.25em 6em;
+    background: var(--gw-bg);
+    color: var(--gw-fg);
+    font-family: var(--gw-serif);
+    font-size: 19px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #page {
+    max-width: var(--gw-body-max);
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* header / masthead */
+  header#masthead {
+    margin-bottom: 2.4em;
+  }
+  header#masthead .site-links {
+    font-family: var(--gw-mono);
+    font-size: 0.72em;
+    letter-spacing: 0.02em;
+    color: var(--gw-fg-dim);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--gw-rule);
+    padding-bottom: 0.6em;
+    margin-bottom: 1.6em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em 1.1em;
+  }
+  header#masthead .site-links a { color: var(--gw-fg-dim); text-decoration: none; border-bottom: 1px dotted var(--gw-rule); }
+  header#masthead .site-links a:hover { color: var(--gw-link); border-bottom-color: var(--gw-link); }
+
+  h1.page-title {
+    font-size: 2.5em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.15em;
+    line-height: 1.1;
+  }
+  .subtitle {
+    font-style: italic;
+    color: var(--gw-fg-dim);
+    font-size: 1.02em;
+    margin: 0 0 0.9em;
+  }
+
+  .meta-line {
+    font-family: var(--gw-mono);
+    font-size: 0.74em;
+    color: var(--gw-fg-dim);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3em 1.3em;
+    margin-bottom: 0;
+  }
+  .meta-line a { color: var(--gw-fg-dim); }
+  .meta-line .sep { color: var(--gw-rule); }
+
+  /* links */
+  a { color: var(--gw-link); text-decoration: none; border-bottom: 1px solid rgba(26,62,140,0.35); }
+  a:visited { color: var(--gw-link-visited); border-bottom-color: rgba(89,56,156,0.35); }
+  a:hover { border-bottom: 1px solid currentColor; }
+
+  /* abstract */
+  div.abstract {
+    margin: 1.6em 0 2.2em;
+    padding: 1.1em 1.4em;
+    border: 1px solid var(--gw-rule);
+    background: color-mix(in srgb, var(--gw-fg) 2%, transparent);
+    font-size: 0.97em;
+  }
+  div.abstract blockquote {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  div.abstract p { margin: 0 0 0.85em; }
+  div.abstract p:last-child { margin-bottom: 0; }
+  div.abstract p:first-of-type::first-letter {
+    font-family: Georgia, var(--gw-serif);
+    font-weight: 700;
+    float: left;
+    font-size: 3.05em;
+    line-height: 0.82;
+    padding-right: 0.07em;
+    padding-top: 0.03em;
+    color: var(--gw-fg);
+  }
+
+  /* table of contents */
+  nav#toc {
+    font-size: 0.82em;
+    margin: 0 0 2.4em;
+    border-top: 1px solid var(--gw-rule);
+    border-bottom: 1px solid var(--gw-rule);
+    padding: 0.9em 0;
+  }
+  nav#toc .toc-label {
+    font-family: var(--gw-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gw-fg-dim);
+    font-size: 0.78em;
+    margin-bottom: 0.5em;
+    display: block;
+  }
+  nav#toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    columns: 2;
+    column-gap: 2em;
+  }
+  nav#toc li { margin-bottom: 0.25em; break-inside: avoid; }
+  nav#toc a { border-bottom: none; }
+  nav#toc a:hover { border-bottom: 1px solid currentColor; }
+
+  /* sections */
+  section { margin-bottom: 2.6em; }
+  h2 {
+    font-size: 1.28em;
+    font-weight: 600;
+    border-bottom: 1px solid var(--gw-rule);
+    padding-bottom: 0.28em;
+    margin: 0 0 1.1em;
+    letter-spacing: -0.005em;
+  }
+  h3.entry-title {
+    font-size: 1.03em;
+    font-weight: 600;
+    margin: 0 0 0.05em;
+    display: inline;
+  }
+  .entry-org {
+    font-style: italic;
+    color: var(--gw-fg-dim);
+  }
+
+  /* job entries: margin-note style date, main content right */
+  .entry {
+    display: grid;
+    grid-template-columns: 8.5em 1fr;
+    column-gap: 1.4em;
+    margin-bottom: 1.65em;
+    align-items: baseline;
+  }
+  .entry-date {
+    font-family: var(--gw-mono);
+    font-size: 0.72em;
+    color: var(--gw-margin-note);
+    text-align: right;
+    padding-top: 0.28em;
+    line-height: 1.35;
+  }
+  .entry-body { min-width: 0; }
+  .entry-heading { margin-bottom: 0.35em; }
+  .entry ul {
+    margin: 0.4em 0 0;
+    padding-left: 1.15em;
+  }
+  .entry li { margin-bottom: 0.32em; font-size: 0.955em; }
+  .entry li:last-child { margin-bottom: 0; }
+
+  @media (max-width: 640px) {
+    .entry { grid-template-columns: 1fr; row-gap: 0.15em; }
+    .entry-date { text-align: left; padding-top: 0; }
+  }
+
+  /* skills grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2.2em;
+    row-gap: 1.1em;
+  }
+  .skill-cat h4 {
+    font-size: 0.88em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: var(--gw-fg-dim);
+    margin: 0 0 0.25em;
+    font-family: var(--gw-mono);
+  }
+  .skill-cat p { margin: 0; font-size: 0.95em; }
+  @media (max-width: 640px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+
+  /* certs */
+  .certs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em 1.6em;
+    font-size: 0.92em;
+  }
+  .certs .cert { white-space: nowrap; }
+  .certs .cert .cert-num { color: var(--gw-fg-dim); font-family: var(--gw-mono); font-size: 0.85em; }
+
+  /* other experience: compact list */
+  .other-exp-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.94em;
+  }
+  .other-exp-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 0.35em 0;
+    border-bottom: 1px dotted var(--gw-rule);
+  }
+  .other-exp-list li:last-child { border-bottom: none; }
+  .other-exp-list .oe-what { color: var(--gw-fg-dim); font-style: italic; }
+  .other-exp-list .oe-when { font-family: var(--gw-mono); font-size: 0.85em; color: var(--gw-fg-dim); white-space: nowrap; }
+
+  /* margin notes as asides for narrative color */
+  span.marginnote {
+    font-size: 0.72em;
+    font-style: italic;
+    color: var(--gw-margin-note);
+    display: block;
+    margin-top: 0.15em;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--gw-rule);
+    margin: 2.4em 0;
+  }
+  hr.ornament {
+    height: 1em;
+    border: none;
+    text-align: center;
+    margin: 2.6em 0;
+    color: var(--gw-rule);
+  }
+  hr.ornament::before { content: "❧"; font-size: 1.1em; }
+
+  footer#colophon {
+    font-size: 0.76em;
+    color: var(--gw-fg-dim);
+    font-family: var(--gw-mono);
+    border-top: 1px solid var(--gw-rule);
+    padding-top: 1.1em;
+    margin-top: 3em;
+    line-height: 1.6;
+  }
+  footer#colophon a { color: var(--gw-fg-dim); }
+
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+  .smallcaps { font-variant: small-caps; letter-spacing: 0.02em; }
+
+  ::selection { background: rgba(26,62,140,0.18); }
+</style>
+</head>
+<body>
+<div id="page">
+
+  <header id="masthead">
+    <div class="site-links">
+      <a href="#experience">Legal Experience</a>
+      <a href="#other-experience">Other Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#certificates">Certificates &amp; Licenses</a>
+      <a href="#education">Education</a>
+      <a href="mailto:sdekovic09@gmail.com">Contact</a>
+    </div>
+
+    <h1 class="page-title">Sallie Dekovic</h1>
+    <p class="subtitle">Contracts attorney &amp; legal-operations engineer</p>
+
+    <p class="meta-line">
+      <span>Boston, MA 02453</span>
+      <span class="sep">·</span>
+      <a href="mailto:sdekovic09@gmail.com">sdekovic09@gmail.com</a>
+      <span class="sep">·</span>
+      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="sep">·</span>
+      <span>Missouri Bar No. 77251</span>
+    </p>
+  </header>
+
+  <div class="abstract" id="abstract">
+    <blockquote>
+      <p>Contracts Attorney (Missouri Bar) with a career-long focus on modernizing legal operations. My experience spans the spectrum of high-volume contract negotiation, regulatory analysis, and the implementation of AI-enhanced contract review workflows.</p>
+      <p>I currently channel this expertise into Consola, a project to modernize compliance through AI-powered obligation intelligence. I am building a system to map fragmented legal requirements into actionable data, specifically targeting the complex, state-level regulatory landscapes of the gig transportation and home health care sectors.</p>
+    </blockquote>
+  </div>
+
+  <nav id="toc">
+    <span class="toc-label">Contents</span>
+    <ul>
+      <li><a href="#experience">Legal Experience</a></li>
+      <li><a href="#other-experience">Other Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certificates">Certificates &amp; Licenses</a></li>
+      <li><a href="#education">Education</a></li>
+    </ul>
+  </nav>
+
+  <section id="experience">
+    <h2>Legal Experience</h2>
+
+    <div class="entry">
+      <div class="entry-date">04/2026–<br>present<br><span class="marginnote">Remote, MA</span></div>
+      <div class="entry-body">
+        <div class="entry-heading"><h3 class="entry-title">Temporary Contracts Attorney</h3> — <span class="entry-org">HopSkipDrive</span> <span class="marginnote" style="display:inline">(via Lawtrades)</span></div>
+        <ul>
+          <li>Review, redline, and negotiate counterparty sales agreements, renewals, amendments, order forms, exhibits, and related commercial contract documents using Ironclad CLM.</li>
+          <li>Support contract lifecycle management from intake through execution, coordinating with Legal, Sales, Operations, Privacy, and business stakeholders on preparation, review, negotiation, approval, tracking, and execution.</li>
+          <li>Analyze customer-specific contractual requirements involving recording consent, background checks, insurance, pricing, service commitments, operational obligations, and privacy/data-protection terms.</li>
+          <li>Built an AI-assisted contract tracker/dashboard prototype in Claude for visibility into contract status, priority, assignment, key metadata, and legal-review workflow.</li>
+          <li>Use GC AI and Claude AI, including markdown-based skills/modules, for clause analysis, counterparty redline review, issue-spotting, and risk-flagging against standard legal terms.</li>
+          <li>Test and iteratively refine AI-assisted contract-review outputs for consistency, accuracy, and alignment with internal legal positions, escalation standards, and preferred fallback language.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">01/2025–<br>04/2026<br><span class="marginnote">Remote, MA</span></div>
+      <div class="entry-body">
+        <div class="entry-heading"><h3 class="entry-title">Freelance Legal AI Consultant</h3></div>
+        <ul>
+          <li>Use RLHF and SFT to improve legal model outputs, aligning to standards of accuracy, safety, and legal reasoning.</li>
+          <li>Design structured prompts, benchmark responses, and evaluation rubrics for contract review, drafting, and legal-research workflows.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">07/2024–<br>12/2024<br><span class="marginnote">Norwell, MA</span></div>
+      <div class="entry-body">
+        <div class="entry-heading"><h3 class="entry-title">Temporary Contracts Paralegal</h3> — <span class="entry-org">Clean Harbors</span> <span class="marginnote" style="display:inline">(via Robert Half)</span></div>
+        <ul>
+          <li>Independently managed review and negotiation of 100+ counterparty-drafted commercial contracts and government bid documents through multiple redline rounds — MSAs, SOWs, NDAs, service agreements, purchase orders, lien waivers, amendments, and subcontracts.</li>
+          <li>Coordinated directly with business stakeholders, counterparties, and, on occasion, customer counsel to resolve legal and commercial issues and drive contracts to signature.</li>
+          <li>Advised internal teams on risk allocation and fallback positions involving indemnity, limited liability, insurance, payment terms, warranties, termination, site conditions, and non-conforming waste.</li>
+          <li>Optimized ServiceNow legal-intake workflow and developed SOPs and training materials to improve request tracking, contract-intake consistency, and internal adoption.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">07/2021–<br>04/2023<br><span class="marginnote">Newton, MA</span></div>
+      <div class="entry-body">
+        <div class="entry-heading"><h3 class="entry-title">Law Clerk, Legal Administrator</h3> — <span class="entry-org">Sonesta International Hotels Corporation</span></div>
+        <ul>
+          <li>Balanced full-time legal-department work while completing evening J.D. studies.</li>
+          <li>Drafted, reviewed, and redlined a broad range of commercial sales, marketing, property, lease, and vendor agreements in accordance with corporate policy and legal requirements.</li>
+          <li>Spearheaded the legal department's FreshService contract-intake portal — 20+ dynamic request forms organized by contract category, automated approval workflows, notification settings, KPI dashboards, and user guides.</li>
+          <li>Updated and maintained the legal department's contract templates and clause library for more consistent drafting, review, and internal use.</li>
+          <li>Improved legal invoice operations by establishing a shared legal-invoices inbox and standardized invoice guidelines for outside counsel while processing 200+ invoices per month in Yardi.</li>
+          <li>Coordinated onboarding for new legal-department employees with HR and IT — systems access, training materials, internal process guidance — and created and maintained corporate and legal-department org charts using Visio.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">01/2023–<br>04/2023<br><span class="marginnote">Boston, MA</span></div>
+      <div class="entry-body">
+        <div class="entry-heading"><h3 class="entry-title">Law Clerk</h3> — <span class="entry-org">Massachusetts Department of Revenue</span></div>
+        <ul>
+          <li>Researched sales and use tax treatment of software products — canned software, custom software, cloud-based applications, and SaaS offerings — across 46 states, synthesized into Excel-based analyses using pivot tables, charts, and other visualization tools.</li>
+          <li>Provided written guidance to taxpayers and state agencies on complex and novel federal, state, and local tax issues under the supervision of Department of Revenue attorneys.</li>
+          <li>Analyzed statutory, regulatory, and administrative tax issues and drafted public-facing written determinations, guidance, and position statements reflecting the DOR's official policy positions.</li>
+          <li>Conducted legal and tax research to support agency decision-making and ensure consistency in the Department's application and communication of tax laws.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">08/2020–<br>07/2021<br><span class="marginnote">Boston, MA</span></div>
+      <div class="entry-body">
+        <div class="entry-heading"><h3 class="entry-title">Law Clerk, Litigation Paralegal</h3> — <span class="entry-org">Jeffrey Glassman Injury Lawyers</span></div>
+        <ul>
+          <li>Drafted and edited legal documents — briefs, pleadings, motions, and correspondence.</li>
+          <li>Managed a high caseload of personal-injury claims, using case-management software, Excel, and Adobe Pro.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">08/2019–<br>04/2020<br><span class="marginnote">Boston, MA</span></div>
+      <div class="entry-body">
+        <div class="entry-heading"><h3 class="entry-title">Case Specialist</h3> <span class="marginnote" style="display:inline">(Criminal &amp; Civil)</span> — <span class="entry-org">Boston Municipal Court</span></div>
+        <ul>
+          <li>Provided high-volume case support to attorneys, court personnel, and the public — processing filings, preparing restraining-order files for judicial review, coordinating with probation for criminal records, and updating archived cases in MassCourts.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">05/2020–<br>07/2020<br><span class="marginnote">Boston, MA</span></div>
+      <div class="entry-body">
+        <div class="entry-heading"><h3 class="entry-title">Law Clerk</h3> — <span class="entry-org">Szal Law Group</span></div>
+        <ul>
+          <li>Conducted legal research and drafted memoranda for cases involving patent infringement, personal injury, and breach-of-contract claims, including a motion to dismiss for lack of personal jurisdiction in Aruba.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">02/2024–<br>05/2024<br><span class="marginnote">Remote, MA</span></div>
+      <div class="entry-body">
+        <div class="entry-heading"><h3 class="entry-title">Cyber Data Breach Review Contractor</h3> — <span class="entry-org">HaystackID</span></div>
+        <ul>
+          <li>Conducted first-pass review and PII/PHI extraction in Relativity on high-volume datasets from three cyber data-breach incidents.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ornament">
+
+  <section id="other-experience">
+    <h2>Other Experience</h2>
+    <ul class="other-exp-list">
+      <li>
+        <span><strong>MilliporeSigma</strong> — <span class="oe-what">Customer Support Specialist</span>, St. Louis, Missouri</span>
+        <span class="oe-when">09/2018–06/2019</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <h4>Contracts &amp; Legal Operations</h4>
+        <p>Commercial contract negotiation, legal-workflow automation, SOP and playbook design.</p>
+      </div>
+      <div class="skill-cat">
+        <h4>AI &amp; Automation</h4>
+        <p>Prompt design, evaluation rubrics, RLHF/SFT, Python automation, LLM-assisted legal workflows.</p>
+      </div>
+      <div class="skill-cat">
+        <h4>Document Review &amp; Management</h4>
+        <p>Relativity, Adobe Acrobat Pro, DocuSign.</p>
+      </div>
+      <div class="skill-cat">
+        <h4>Research &amp; Analysis</h4>
+        <p>Westlaw Edge, LexisNexis, PACER, Excel analytics, KPIs, dashboards.</p>
+      </div>
+      <div class="skill-cat">
+        <h4>Enterprise Software</h4>
+        <p>ServiceNow, FreshService, Yardi Systems.</p>
+      </div>
+      <div class="skill-cat">
+        <h4>Web Design</h4>
+        <p>HTML, CSS, JavaScript.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <h2>Certificates &amp; Licenses</h2>
+    <div class="certs">
+      <span class="cert">Google Cybersecurity</span>
+      <span class="cert">Freshservice Product Expert</span>
+      <span class="cert">Sololearn Web Development</span>
+      <span class="cert">Missouri Bar <span class="cert-num">No. 77251</span></span>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+
+    <div class="entry">
+      <div class="entry-date">08/2019–<br>05/2023</div>
+      <div class="entry-body">
+        <div class="entry-heading"><h3 class="entry-title">J.D., Evening Program</h3> — <span class="entry-org">New England Law | Boston</span></div>
+        <p style="margin: 0.35em 0 0; font-size: 0.955em;">Awarded the Justice Sandra Day O'Connor Full-Tuition Merit Scholarship.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">12/2015</div>
+      <div class="entry-body">
+        <div class="entry-heading"><h3 class="entry-title">B.A., Psychology</h3> <span class="marginnote" style="display:inline">(Minor in Philosophy)</span> — <span class="entry-org">University of Missouri–St. Louis</span></div>
+        <p style="margin: 0.35em 0 0; font-size: 0.955em;"><em>Magna cum laude.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="colophon">
+    <p>Résumé last updated 2026-05-29. Typeset in the house style of <a href="https://gwern.net/style-guide" target="_blank" rel="noopener">gwern.net</a>: Source Serif Pro body text, Nimbus-Mono metadata, hairline rules, and a single dropcap paragraph.</p>
+  </footer>
+
+</div>
+</body>
+</html>
